@@ -1,19 +1,19 @@
-use chrono::datetime::DateTime;
-use chrono::offset::utc::UTC;
+use chrono::DateTime;
+use chrono::Utc;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-
-#[derive(Clone, Debug, RustcEncodable, RustcDecodable)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Post {
     title: String,
     body: String,
     author: String,
-    datetime: DateTime<UTC>,
+    datetime: DateTime<Utc>,
     uuid: Uuid,
 }
 
 impl Post {
-    pub fn new(title: &str, body: &str, author: &str, datetime: DateTime<UTC>, uuid: Uuid) -> Post {
+    pub fn new(title: &str, body: &str, author: &str, datetime: DateTime<Utc>, uuid: Uuid) -> Post {
         Post {
             title: title.to_string(),
             body: body.to_string(),
